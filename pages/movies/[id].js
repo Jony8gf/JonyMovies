@@ -45,7 +45,7 @@ const Movie = ({data, dataMovie}) => {
                     </div>
                     <Carousel>
                         {dataMovie.videos.results.map(x =>
-                                <Carousel.Item>
+                                <Carousel.Item key={x.key}>
                                     <iframe width="560" height="315" className="d-block w-100" src={`https://www.youtube.com/embed/${x.key}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                                     <Carousel.Caption>
                                     </Carousel.Caption>
