@@ -67,9 +67,9 @@ export default function Movies({ movies }) {
             </div>
           </div>
           <div className="contenedor">
-            {mov.map(movie => <Link key={movie.title+"-"+movie.id} href={`/movies/${movie.id}`}>
+            {mov.map(movie => <Link key={movie.id} href={`/movies/${movie.id}`}>
                                     <div className="pelicula">
-                                      <Image className="poster" key={movie.id}src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} width={400} height={400}></Image>
+                                      <Image className="poster" key={movie.poster_path}src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} width={400} height={400}></Image>
                                     </div>
                                   </Link>
             )}

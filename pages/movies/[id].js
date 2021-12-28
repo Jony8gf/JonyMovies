@@ -29,16 +29,16 @@ const Movie = ({data, dataMovie}) => {
                     <div className='info p-1 my-3'>
                         <h3 className='d-flex justify-content-center mt-2'>Información Adiccional:</h3>
                         <div className='mt-2 mb-1 mx-5 d-flex'>Generos: {data.genres.map(x =>
-                             <p className='mx-1 my-0' key={x.id}> {x.name} </p>)}
+                             <p className='mx-1 my-0' key={x.id+"-"+x.name}> {x.name} </p>)}
                         </div>
                         <p className='mb-1 mx-5'>Presupuesto: {data.budget}$</p>
                         <p className='mb-1 mx-5'>Ingresos: {data.revenue}$</p>
                         <p className='mb-1 mx-5'>Fecha de lanzamiento: {data.release_date}</p>
                         <div className='mt-2 mb-1 mx-5 d-flex'>Productoras: {data.production_companies.map(x =>
-                             <p className='mx-1 my-0' key={x.id}> {x.name} </p>)}
+                             <p className='mx-1 my-0' key={x.id+"-"+x.name}> {x.name} </p>)}
                         </div>
                         <div className='mt-2 mb-1 mx-5 d-flex'>Países de producción: {data.production_countries.map(x =>
-                             <p className='mx-1 my-0' key={x.id}> {x.name} </p>)}
+                             <p className='mx-1 my-0' key={x.id+"-"+x.name}> {x.name} </p>)}
                         </div>
                         <p className='mb-1 mx-5'>Titulo original: {data.original_title}</p>
                         <p className='mb-1 mx-5'>Votos en IMBD: {data.vote_count}</p>
@@ -58,8 +58,8 @@ const Movie = ({data, dataMovie}) => {
                         <ul className="list-group ">
                             {data.credits.cast.map(x =>
 
-                                <Link  href={`../person/${x.id}`}>
-                                    <li className="list-group-item d-flex p2" key={x.id +"-"+ x.title +"-"+ x.name +"-"+ x.character}>
+                                <Link  href={`../person/${x.id}`} key={x.id +"-"+ x.title +"-"+ x.name +"-"+ x.character}>
+                                    <li className="list-group-item d-flex p2">
                                                 {x.profile_path ? <Image className="rounded-circle" src={'https://image.tmdb.org/t/p/w500'+x.profile_path} width={40} height={40}></Image>
                                                     :  <Image className="rounded-circle" src={'https://cdn-icons-png.flaticon.com/512/121/121693.png'} width={40} height={40}></Image>}
                                                 <p className='mt-4 mx-3'>{x.name} ({x.character})</p>
@@ -74,8 +74,8 @@ const Movie = ({data, dataMovie}) => {
                         <ul className="list-group ">
                             {data.credits.crew.map(x =>
 
-                            <Link  href={`../person/${x.id}`}>
-                                <li className="list-group-item d-flex p2" key={x.id +"-"+ x.title +"-"+ x.name +"-"+ x.job +"-"+ x.known_for_department} >
+                            <Link  href={`../person/${x.id}`} key={x.id +"-"+ x.title +"-"+ x.name +"-"+ x.job +"-"+ x.known_for_department} >
+                                <li className="list-group-item d-flex p2">
                                             {x.profile_path ? <Image className="rounded-circle" src={'https://image.tmdb.org/t/p/w500'+x.profile_path} width={40} height={40}></Image>
                                                 :  <Image className="rounded-circle" src={'https://cdn-icons-png.flaticon.com/512/121/121693.png'} width={40} height={40}></Image>}
                                             <p className='mt-4 mx-2 font-weight-bold'>{x.name}</p>
@@ -92,13 +92,6 @@ const Movie = ({data, dataMovie}) => {
 }
 
 export default Movie
-
-// export const getStaticProps = async ({params}) => {
-//     const urlApi = `https://api.themoviedb.org/3/movie/${params.id}?api_key=192e0b9821564f26f52949758ea3c473&language=es`
-//     const response = await fetch(urlApi)
-//     const data = await response.json()
-//     return{props: {data}}
-// }
 
 export const getServerSideProps = async ({params}) => {
     //https://api.themoviedb.org/3/person/3?api_key=192e0b9821564f26f52949758ea3c473&append_to_response=combined_credits
